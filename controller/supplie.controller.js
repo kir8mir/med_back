@@ -3,7 +3,7 @@ const pool = require("../database/index");
 const supplieController = {
   getAll: async (req, res) => {
     try {
-      const [rows, fields] = await pool.query("select * from supplies");
+      const [rows, fields] = await pool.query("select * from Supplies");
       res.json({ data: rows });
     } catch (err) {
       console.log("ERROR:", err);
@@ -13,7 +13,7 @@ const supplieController = {
     try {
       const { id } = req.params;
       const [rows, fields] = await pool.query(
-        "select * from supplies where id = ?",
+        "select * from Supplies where id = ?",
         [id]
       );
       res.json({ data: rows });
@@ -25,7 +25,7 @@ const supplieController = {
     try {
       const { meds } =
         req.body;
-        const sql = 'insert into supplies (meds) values (?)';
+        const sql = 'insert into Supplies (meds) values (?)';
         const [medicineResult] = await pool.query(
           "SELECT * FROM Medicines WHERE id = ?",
           [meds.medId]
@@ -53,7 +53,7 @@ const supplieController = {
       const { meds } =
         req.body;
         const { id } = req.params;
-       const sql = 'update supplies set meds=? where id = ?';
+       const sql = 'update Supplies set meds=? where id = ?';
        const [rows, fields] = await pool.query(sql, [meds]);
        res.json({ data: rows});
     } catch (err) {
@@ -63,7 +63,7 @@ const supplieController = {
   delete: async (req, res) => {
     try {
       const { id } = req.params;
-      const [rows, fields] = await pool.query('delete from supplies where id = ?', [id]);
+      const [rows, fields] = await pool.query('delete from Supplies where id = ?', [id]);
       res.json({ data: rows})
     } catch(err) {
       console.log('ERROR:', err);

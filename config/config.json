@@ -1,23 +1,23 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "meds_db",
-    "host": "127.0.0.1",
+    "username": "freedb_Cyrill",
+    "password": "eAQBkvCyke7w?y%",
+    "database": "freedb_meds_db",
+    "host": "sql.freedb.tech",
     "dialect": "mysql"
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "meds_db",
-    "host": "127.0.0.1",
+    "username": "freedb_Cyrill",
+    "password": "eAQBkvCyke7w?y%",
+    "database": "freedb_meds_db",
+    "host": "sql.freedb.tech",
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "meds_db",
-    "host": "127.0.0.1",
+    "username": "freedb_Cyrill",
+    "password": "eAQBkvCyke7w?y%",
+    "database": "freedb_meds_db",
+    "host": "sql.freedb.tech",
     "dialect": "mysql"
   }
 }

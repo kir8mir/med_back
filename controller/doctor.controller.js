@@ -12,7 +12,7 @@ pool.getConnection((err, connection) => {
 const doctorController = {
   getAll: async (req, res) => {
     try {
-      const [rows, fields] = await pool.query("select * from doctors");
+      const [rows, fields] = await pool.query("select * from Doctors");
       res.json({ data: rows });
     } catch (err) {
       console.log("ERROR:", err);
@@ -22,7 +22,7 @@ const doctorController = {
     try {
       const { id } = req.params;
       const [rows, fields] = await pool.query(
-        "select * from doctors where id = ?",
+        "select * from Doctors where id = ?",
         [id]
       );
       res.json({ data: rows });
@@ -42,9 +42,9 @@ const doctorController = {
         password,
       } = req.body;
       const sql =
-        "insert into doctors (first_name, last_name, specialty, qualification, phone, email, password) values (?, ?, ?, ?, ?, ?, ?)";
+        "insert into Doctors (first_name, last_name, specialty, qualification, phone, email, password) values (?, ?, ?, ?, ?, ?, ?)";
 
-      const doctorsResult = await pool.query("select * from doctors");
+      const doctorsResult = await pool.query("select * from Doctors");
       const doctors = doctorsResult[0];
       if (doctors.some((doctor) => doctor.email === email)) {
         res.json({ ERROR: "This doctor is already in use!" });
@@ -77,7 +77,7 @@ const doctorController = {
   login: async (req, res) => {
     const { email, password } = req.body;
     const [doctorResult] = await pool.query(
-      "select * from doctors where email = ?",
+      "select * from Doctors where email = ?",
       [email]
     );
     const doctor = doctorResult[0];
@@ -113,7 +113,7 @@ const doctorController = {
       } = req.body;
       const { id } = req.params;
       const sql =
-        "update doctors set first_name=?, last_name=?, specialty=?, qualification=?, phone=?, email=?, password=? where id = ?";
+        "update Doctors set first_name=?, last_name=?, specialty=?, qualification=?, phone=?, email=?, password=? where id = ?";
       const [rows, fields] = await pool.query(sql, [
         first_name,
         last_name,
@@ -133,7 +133,7 @@ const doctorController = {
     try {
       const { id } = req.params;
       const [rows, fields] = await pool.query(
-        "delete from doctors where id = ?",
+        "delete from Doctors where id = ?",
         [id]
       );
       res.json({ data: rows });

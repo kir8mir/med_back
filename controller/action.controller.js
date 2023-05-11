@@ -3,7 +3,7 @@ const pool = require("../database/index");
 const actionController = {
   getAll: async (req, res) => {
     try {
-      const [rows, fields] = await pool.query("select * from actions");
+      const [rows, fields] = await pool.query("select * from Actions");
       res.json({ data: rows });
     } catch (err) {
       console.log("ERROR:", err);
@@ -28,7 +28,7 @@ const actionController = {
     try {
       const { doctorId, medicineId, date, quantity } = req.body;
       const sql =
-        "insert into actions (doctorId, medicineId, date, quantity) values (?, ?, ?, ?)";
+        "insert into Actions (doctorId, medicineId, date, quantity) values (?, ?, ?, ?)";
       const [medicineResult] = await pool.query(
         "SELECT * FROM Medicines WHERE id = ?",
         [medicineId]
@@ -56,7 +56,7 @@ const actionController = {
       const actionIds = doctor.actionIds || [];
       actionIds.push(rows.insertId);
 
-      await pool.query("UPDATE doctors SET actionIds = ? WHERE id = ?", [
+      await pool.query("UPDATE Doctors SET actionIds = ? WHERE id = ?", [
         JSON.stringify(actionIds),
         doctorId,
       ]);
@@ -82,7 +82,7 @@ const actionController = {
     try {
       const { id } = req.params;
       const [rows, fields] = await pool.query(
-        "delete from actions where id = ?",
+        "delete from Actions where id = ?",
         [id]
       );
       res.json({ data: rows });

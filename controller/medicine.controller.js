@@ -9,7 +9,7 @@ pool.getConnection((err, connection) => {
 const medicineController = {
   getAll: async (req, res) => {
     try {
-      const [rows, fields] = await pool.query("select * from medicines");
+      const [rows, fields] = await pool.query("select * from Medicines");
       res.json({ data: rows });
     } catch (err) {
       console.log("ERROR:", err);
@@ -19,7 +19,7 @@ const medicineController = {
     try {
       const { id } = req.params;
       const [rows, fields] = await pool.query(
-        "select * from medicines where id = ?",
+        "select * from Medicines where id = ?",
         [id]
       );
       res.json({ data: rows });
@@ -45,7 +45,7 @@ const medicineController = {
         balance
       } = req.body;
       const sql =
-        "insert into medicines (name, active_ingredient, manufacturer, form, strength, route_of_administration, indication, contraindication, side_effects, storage_conditions, expiration_date, prescription_required, balance) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        "insert into Medicines (name, active_ingredient, manufacturer, form, strength, route_of_administration, indication, contraindication, side_effects, storage_conditions, expiration_date, prescription_required, balance) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
       const [rows, fields] = await pool.query(sql, [
         name,
@@ -86,7 +86,7 @@ const medicineController = {
       } = req.body;
       const { id } = req.params;
       const sql =
-        "update medicines set name=?, active_ingredient=?, manufacturer=?, form=?, strength=?, route_of_administration=?, indication=?, contraindication=?, side_effects=?, storage_conditions=?, expiration_date=?, prescription_required=?, balance=?  where id = ?";
+        "update Medicines set name=?, active_ingredient=?, manufacturer=?, form=?, strength=?, route_of_administration=?, indication=?, contraindication=?, side_effects=?, storage_conditions=?, expiration_date=?, prescription_required=?, balance=?  where id = ?";
       const [rows, fields] = await pool.query(sql, [
         name,
         active_ingredient,
@@ -112,7 +112,7 @@ const medicineController = {
     try {
       const { id } = req.params;
       const [rows, fields] = await pool.query(
-        "delete from medicines where id = ?",
+        "delete from Medicines where id = ?",
         [id]
       );
       res.json({ data: rows });
