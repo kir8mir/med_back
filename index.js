@@ -1,11 +1,13 @@
 const express = require("express");
 require("dotenv").config();
-
+const cors = require('cors');
 const app = express();
 const doctorRouter = require("./routes/doctor.router");
 const medicineRouter = require("./routes/medicine.router");
 const actionRouter = require("./routes/action.router");
 const supplieRouter = require("./routes/supplie.router");
+
+app.use(cors());
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
